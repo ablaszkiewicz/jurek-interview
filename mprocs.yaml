@@ -1,0 +1,18 @@
+# Local dev stack for jurek-interview.
+#
+#   mprocs
+#
+# Both procs autostart. The task1 backend runs on 3000, the task1 frontend on 5173. The frontend
+# talks to the backend over a hardcoded localhost URL, so nothing here needs configuring - start
+# it and open http://localhost:5173.
+
+procs:
+  task1-backend:
+    shell: 'pnpm install && pnpm start:dev'
+    cwd: task1/backend
+    autostart: true
+
+  task1-frontend:
+    shell: 'pnpm install && pnpm dev'
+    cwd: task1/frontend
+    autostart: true

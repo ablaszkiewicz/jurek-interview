@@ -9,7 +9,6 @@ Everything is hardcoded - no `.env` files, no configuration.
 ### Running it
 
 ```bash
-cd task1
 mprocs
 ```
 
