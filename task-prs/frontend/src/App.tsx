@@ -33,7 +33,7 @@ const COLUMNS: (keyof PullRequest)[] = [
 const CELL: React.CSSProperties = { border: '1px solid #000', padding: '3px 6px', verticalAlign: 'top' };
 
 // Hardcoded on purpose - no .env files in this task.
-const API_URL = 'http://localhost:3000/pull-requests';
+const API_URL = 'http://localhost:47101/pull-requests';
 
 export function App() {
   const [pullRequests, setPullRequests] = useState<PullRequest[]>([]);

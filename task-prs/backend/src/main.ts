@@ -8,7 +8,8 @@ async function bootstrap() {
   // cross-origin. Wide open on purpose - there is nothing to protect here.
   app.enableCors({ origin: '*' });
 
-  await app.listen(3000);
+  // Deliberately obscure port - see the block in README.md. Nothing else on the machine wants it.
+  await app.listen(47101);
 }
 
 bootstrap();

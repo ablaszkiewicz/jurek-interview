@@ -2,17 +2,32 @@
 #
 #   mprocs
 #
-# Both procs autostart. The task1 backend runs on 3000, the task1 frontend on 5173. The frontend
-# talks to the backend over a hardcoded localhost URL, so nothing here needs configuring - start
-# it and open http://localhost:5173.
+# Nothing autostarts. Pick a proc with j/k and press `s` to start it, `x` to stop, `r` to restart.
+# Each proc installs its own dependencies on the way up.
+#
+# Ports live in a private 471xx block - task-prs backend on 47101, its frontend on 47102,
+# task-nasa backend on 47103 - so they never collide with the usual 3000/5173 crowd. Everything
+# talks over hardcoded localhost URLs, so nothing here needs configuring.
 
 procs:
-  task1-backend:
+  task-prs-backend:
     shell: 'pnpm install && pnpm start:dev'
-    cwd: task1/backend
-    autostart: true
+    cwd: task-prs/backend
+    autostart: false
 
-  task1-frontend:
+  task-prs-frontend:
     shell: 'pnpm install && pnpm dev'
-    cwd: task1/frontend
-    autostart: true
+    cwd: task-prs/frontend
+    autostart: false
+
+  task-nasa-backend:
+    shell: 'pnpm install && pnpm start:dev'
+    cwd: task-nasa/backend
+    autostart: false
+
+  # One-shot, not a server. Start task-nasa-backend first, then press `s` here and watch it run;
+  # it exits when the run is over, and `r` runs it again.
+  task-nasa-storm:
+    shell: 'node test-script/storm.mjs'
+    cwd: task-nasa
+    autostart: false
