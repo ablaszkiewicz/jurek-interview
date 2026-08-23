@@ -20,6 +20,7 @@ OS hands out to outgoing connections, so it stays free.
 | task-prs backend   | `47101` |
 | task-prs frontend  | `47102` |
 | task-nasa backend  | `47103` |
+| task-review backend | `47104` |
 
 ## task-prs
 
@@ -80,3 +81,23 @@ node task-nasa/test-script/storm.mjs
 It sends the start signal, then fires a burst of requests every second for 10 seconds, waits for
 every response, sends the stop signal, and prints what it sent next to what the backend saw. No
 dependencies.
+
+## task-review
+
+A NestJS backend only - no frontend, no test script. A small storefront API that reads everything
+from a slow supplier API.
+
+```bash
+cd task-review/backend && pnpm install && pnpm start   # http://localhost:47104
+```
+
+### The endpoints
+
+```
+GET /products/:id
+GET /products/:id/price?currency=EUR
+```
+
+`/products/:id` returns the product as the supplier reports it. `/products/:id/price` converts the
+supplier's PLN price into the currency asked for. Every call goes to the supplier, and the supplier
+takes 300-800ms to answer.

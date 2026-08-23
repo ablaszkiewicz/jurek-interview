@@ -6,7 +6,7 @@
 # Each proc installs its own dependencies on the way up.
 #
 # Ports live in a private 471xx block - task-prs backend on 47101, its frontend on 47102,
-# task-nasa backend on 47103 - so they never collide with the usual 3000/5173 crowd. Everything
+# task-nasa backend on 47103, task-review backend on 47104 - so they never collide with the usual 3000/5173 crowd. Everything
 # talks over hardcoded localhost URLs, so nothing here needs configuring.
 
 procs:
@@ -30,4 +30,9 @@ procs:
   task-nasa-storm:
     shell: 'node test-script/storm.mjs'
     cwd: task-nasa
+    autostart: false
+
+  task-review-backend:
+    shell: 'pnpm install && pnpm start:dev'
+    cwd: task-review/backend
     autostart: false
