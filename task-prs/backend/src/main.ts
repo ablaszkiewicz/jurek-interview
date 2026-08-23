@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { PullRequestsModule } from './pull-requests/pull-requests.module';
+import { AppModule } from './app.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(PullRequestsModule);
+  const app = await NestFactory.create(AppModule);
 
   // The frontend runs on its own dev server port, so the browser treats every call as
   // cross-origin. Wide open on purpose - there is nothing to protect here.
